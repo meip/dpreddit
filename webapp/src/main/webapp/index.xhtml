@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" type="text/css" href="http://bootswatch.com/flatly/bootstrap.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="http://bootswatch.com/bower_components/font-awesome/css/font-awesome.min.css" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="http://bootswatch.com/bower_components/bootstrap/assets/js/html5shiv.js"></script>
+        <script src="http://bootswatch.com/bower_components/bootstrap/assets/js/respond.min.js"></script>
+    <![endif]-->
+</h:head>
+<h:body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="../" class="navbar-brand">DP Reddit</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="anavigation">Nav 1<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="#">Link 1</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href="#">Link 2</a></li>
+                            <li><a tabindex="-1" href="#">Link 3</a></li>
+                            <li><a tabindex="-1" href="#">Link 4</a></li>
+                            <li><a tabindex="-1" href="#">Link 5</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#">Help</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="page-header" id="banner">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Custom</h1>
+
+                    <p class="lead">Bla bla</p>
+                </div>
+                <div class="col-lg-12">
+                    <h1>Hello World PrimeFaces</h1>
+                    <h:outputText value="#{editor.value}"/>
+                    <p>#{editor.value}</p>
+                    <p:spinner/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://bootswatch.com/bower_components/jquery/jquery.min.js"></script>
+    <script src="http://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="http://bootswatch.com/assets/js/bootswatch.js"></script>
+
+</h:body>
+</html>
