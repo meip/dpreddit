@@ -1,5 +1,10 @@
+import com.earldouglas.xsbtwebplugin.Container
 import sbt._
 import Keys._
+import sbt.Keys.settings
+import com.earldouglas.xsbtwebplugin.WebPlugin._
+
+import com.earldouglas.xsbtwebplugin.PluginKeys._
 
 object BuildSettings {
   val buildVersion = "0.0.1"
@@ -8,7 +13,8 @@ object BuildSettings {
     organization := "ch.hsr.intte",
     version := buildVersion,
     shellPrompt := ShellPrompt.buildShellPrompt,
-    exportJars := true
+    exportJars := false,
+    autoScalaLibrary := false
   )
 }
 
@@ -27,9 +33,12 @@ object Dependencies {
   val javaxservlet = "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "container,test" artifacts Artifact("javax.servlet", "jar", "jar")
   val javaxservletjsp = "org.eclipse.jetty.orbit" % "javax.servlet.jsp" % "2.2.0.v201112011158" % "container,test" artifacts Artifact("javax.servlet.jsp", "jar", "jar")
 
-  val jsfapi = "com.sun.faces" % "jsf-api" % "2.1.7"
-  val jsfimpl = "com.sun.faces" % "jsf-impl" % "2.1.7"
+  val jsfapi = "org.apache.myfaces.core" % "myfaces-api" % "2.1.12" % "compile"
+  val jsfimpl = "org.apache.myfaces.core" % "myfaces-impl" % "2.1.12" % "compile"
   val primefaces = "org.primefaces" % "primefaces" % "4.0"
+
+  val elapi = "javax.el" % "el-api" % "2.2"
+  val elimpl = "org.glassfish.web" % "el-impl" % "2.2" % "container,test"
 
   val logbackclassic = "ch.qos.logback" % "logback-classic" % "1.0.6"
 }
@@ -38,7 +47,6 @@ object IntteUBuild extends Build {
 
   import Dependencies._
   import BuildSettings._
-  import com.earldouglas.xsbtwebplugin.WebPlugin.webSettings
 
   val dpredditWebappDeps = Seq(
     jettywebapp,
@@ -50,9 +58,12 @@ object IntteUBuild extends Build {
     jsfimpl,
     primefaces,
 
+    elapi,
+    elimpl,
+
     logbackclassic
   )
-  val dpredditSebappDeps = Seq();
+  val dpredditSpaDeps = Seq();
 
   lazy val dpreddit = Project(
     "dpreddit",
@@ -65,12 +76,14 @@ object IntteUBuild extends Build {
   lazy val dpredditWebapp = Project(
     "dpreddit-webapp",
     file("webapp"),
-    settings = buildSettings ++ webSettings ++ Seq(libraryDependencies ++= dpredditWebappDeps)
+    settings = buildSettings ++ webSettings ++ Seq(libraryDependencies ++= dpredditWebappDeps) ++ Seq (
+      port in container.Configuration := 8080
+    )
   ) dependsOn (dpredditSpa)
 
   lazy val dpredditSpa = Project(
     "dpreddit-spa",
     file("spa"),
-    settings = buildSettings ++ Seq(libraryDependencies ++= dpredditSebappDeps)
+    settings = buildSettings ++ Seq(libraryDependencies ++= dpredditSpaDeps)
   )
 }
