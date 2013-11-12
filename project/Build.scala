@@ -33,8 +33,8 @@ object Dependencies {
   val javaxservlet = "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "container,test" artifacts Artifact("javax.servlet", "jar", "jar")
   val javaxservletjsp = "org.eclipse.jetty.orbit" % "javax.servlet.jsp" % "2.2.0.v201112011158" % "container,test" artifacts Artifact("javax.servlet.jsp", "jar", "jar")
 
-  val jsfapi = "org.apache.myfaces.core" % "myfaces-api" % "2.1.12" % "compile"
-  val jsfimpl = "org.apache.myfaces.core" % "myfaces-impl" % "2.1.12" % "compile"
+  val jsfapi = "org.apache.myfaces.core" % "myfaces-api" % "2.2.0-beta" % "compile"
+  val jsfimpl = "org.apache.myfaces.core" % "myfaces-impl" % "2.2.0-beta" % "compile"
   val primefaces = "org.primefaces" % "primefaces" % "4.0"
 
   val elapi = "javax.el" % "el-api" % "2.2"
