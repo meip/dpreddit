@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<body>
+<ui:composition>
+
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="../" class="navbar-brand">DP Reddit</a>
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="anavigation">Nav 1<span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="#">Link 1</a></li>
+                                <li class="divider"></li>
+                                <li><a tabindex="-1" href="#">Link 2</a></li>
+                                <li><a tabindex="-1" href="#">Link 3</a></li>
+                                <li><a tabindex="-1" href="#">Link 4</a></li>
+                                <li><a tabindex="-1" href="#">Link 5</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h:panelGroup rendered="#{!userSessionBean.loggedIn}">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/registration.xhtml">Sign Up</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In <strong
+                                        class="caret"></strong></a>
+
+                                <div class="dropdown-menu" style="width: 300px; padding: 10px">
+
+                                    <h:form acceptcharset="UTF-8">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="signinusername">Username</label>
+                                            <h:inputText type="text" styleClass="form-control" id="signinusername"
+                                                         value="#{userSessionBean.username}"
+                                                         required="true" requiredMessage="Please Enter Username!"
+                                                         p:placeholder="Username"></h:inputText>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="signinpassword">Password</label>
+                                            <h:inputSecret styleClass="form-control" id="signinpassword"
+                                                           value="#{userSessionBean.password}"
+                                                           required="true" requiredMessage="Please Enter Password!"
+                                                           p:placeholder="Password"></h:inputSecret>
+                                        </div>
+                                        <div class="checkbox" style="float: left;">
+                                            <label>
+                                                <input type="checkbox"/> Remember me
+                                            </label>
+                                        </div>
+                                        <h:commandButton type="submit" value="Sign in" action="#{userSessionBean.login}" styleClass="btn btn-primary pull-right"></h:commandButton>
+                                    </h:form>
+                                </div>
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li>
+                                <a href="#">Help</a>
+                            </li>
+                        </ul>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{userSessionBean.loggedIn}">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>Hi, #{userSessionBean.user.username}</li>
+                            <li>
+                                <h:form acceptcharset="UTF-8">
+                                    <h:commandLink value="Logut" action="#{userSessionBean.logout}"><h:outputFormat value="" styleClass="glyphicon glyphicon-off"></h:outputFormat></h:commandLink>
+                                </h:form>
+                            </li>
+                        </ul>
+                    </h:panelGroup>
+
+                </div>
+            </div>
+        </div>
+
+
+</ui:composition>
+</body>
+</html>
+
+
