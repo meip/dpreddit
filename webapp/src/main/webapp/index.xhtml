@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
       xmlns:p="http://primefaces.org/ui">
 <h:body>
 
@@ -16,6 +17,24 @@
                     </div>
                 </div>
             </div>
+
+            <ul class="media-list list-group">
+                <ui:repeat var="post" value="#{postbean.posts}">
+                <li class="media list-group-item">
+                    <a class="pull-left" href="#">
+                        <span class="glyphicon glyphicon-chevron-up" onclick="#{postbean.votePost(post)}"></span><div class="clearfix"></div>
+                        <span>#{post.votes}</span><div class="clearfix"></div>
+                        <span class="glyphicon glyphicon-chevron-down" onclick="#{post.devote(userSessionBean.user)}"></span>
+                    </a>
+                    <div class="media-body">
+                       <a href="#{post.linkURL}"><h4 class="media-heading">#{post.title}</h4></a>
+                       <span jsfc="h:outputText">#{post.ago} ago by #{post.postAuthor.username}</span>
+                    </div>
+                </li>
+                </ui:repeat>
+            </ul>
+
+
         </ui:define>
 
     </ui:composition>

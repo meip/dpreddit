@@ -10,6 +10,13 @@ public final class DPRedditDB {
     private static DPRedditDB instance;
 
     private DPRedditDB() {
+
+        User user = new User("test", "test");
+        addUser(user);
+
+        Post post = new Post("Please do not visit this site during lectures!", "http://9gag.com", user);
+        addPost(post);
+
     }
 
     public synchronized static DPRedditDB getInstance() {
