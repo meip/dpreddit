@@ -57,6 +57,15 @@ public class Post {
         return positiveVotes.size() - negativeVotes.size();
     }
 
+    public double getPreciseVotes() {
+        int pos = positiveVotes.size();
+        int n = pos + negativeVotes.size();
+
+        double z = 1.96;
+        double phat = 1 * pos / n;
+        return (phat + z*z/(2*n) - z * Math.sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n);
+    }
+
     public int vote(User user) {
         if (negativeVotes.contains(user)) {
             negativeVotes.remove(user);
