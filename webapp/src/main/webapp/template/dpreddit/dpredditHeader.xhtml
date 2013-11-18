@@ -18,6 +18,11 @@
                 </div>
                 <div class="navbar-collapse collapse" id="navbar-main">
                     <ul class="nav navbar-nav">
+                        <h:panelGroup rendered="#{userSessionBean.loggedIn}">
+                            <li>
+                                <a href="/newlink.xhtml">Submit link</a>
+                            </li>
+                        </h:panelGroup>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="anavigation">Nav 1<span
                                     class="caret"></span></a>
@@ -74,10 +79,9 @@
                     </h:panelGroup>
                     <h:panelGroup rendered="#{userSessionBean.loggedIn}">
                         <ul class="nav navbar-nav navbar-right">
-                            <li>Hi, #{userSessionBean.user.username}</li>
                             <li>
                                 <h:form acceptcharset="UTF-8">
-                                <h:commandLink value="" action="#{userSessionBean.logout}"><h:outputFormat value="" styleClass="glyphicon glyphicon-off"></h:outputFormat><h:outputFormat value="Logout"></h:outputFormat></h:commandLink>
+                                <h:commandLink value="" action="#{userSessionBean.logout}"><h:outputFormat value="" styleClass="glyphicon glyphicon-off"></h:outputFormat><h:outputFormat value="Logout #{userSessionBean.user.username}"></h:outputFormat></h:commandLink>
                                 </h:form>
                             </li>
                         </ul>
@@ -86,8 +90,6 @@
                 </div>
             </div>
         </div>
-
-
 </ui:composition>
 </body>
 </html>
