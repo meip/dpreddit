@@ -3,7 +3,7 @@ package ch.hsr.dpreddit.spa;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Rateable {
+public class Rateable{
 
     private Set<User> positiveVotes = new HashSet<>();
     private Set<User> negativeVotes = new HashSet<>();
@@ -26,4 +26,5 @@ public class Rateable {
         }
         negativeVotes.add(user);
     }
+
 }
