@@ -1,65 +1,43 @@
 package ch.hsr.dpreddit.spa;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Post extends Rateable{
+public class Comment extends Rateable {
     private static long IDINCREMENTER = 1;
     private long id;
-    private String title;
-    private String linkURL;
-    private User postAuthor;
+    private User author;
+    private Post post;
+    private String commentText;
     private Date date;
-    private Set<Comment> comments = new HashSet<>();
 
-    public Post(String title, String linkURL, User user) {
+    public Comment(String commentText, User author, Post post) {
         this.id = IDINCREMENTER++;
-        this.title = title;
-        this.linkURL = linkURL;
-        this.postAuthor = user;
+        this.commentText = commentText;
+        this.author = author;
+        this.post = post;
         this.date = new Date();
     }
-    public String getTitle() {
-        return title;
+
+    public String getCommentText() {
+        return commentText;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
     }
 
-    public String getLinkURL() {
-        return linkURL;
+    public User getAuthor() {
+        return author;
     }
 
-    public void setLinkURL(String linkURL) {
-        this.linkURL = linkURL;
-    }
-
-    public User getPostAuthor() {
-        return postAuthor;
-    }
-
-    public void setPostAuthor(User postAuthor) {
-        this.postAuthor = postAuthor;
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     public Date getDate() {
         return date;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public boolean addComment(Comment comment) {
-        return comments.add(comment);
-    }
-
-    public Set<Comment> getComments() {
-        return comments;
     }
 
     public Map<String, Integer> getDateComponents() {
