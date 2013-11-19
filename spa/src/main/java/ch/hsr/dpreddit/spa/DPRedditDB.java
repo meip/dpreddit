@@ -2,6 +2,8 @@ package ch.hsr.dpreddit.spa;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public final class DPRedditDB {
     private Set<Link> linkSet = new HashSet<>();

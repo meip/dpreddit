@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Comment extends Rateable {
+public class Comment extends Rateable implements Comparable<Comment> {
     private static long IDINCREMENTER = 1;
     private long id;
     private User author;
@@ -102,5 +102,22 @@ public class Comment extends Rateable {
         }
 
         return "now";
+    }
+
+    @Override
+    public int compareTo(Comment o) {
+        if(getVotes() > o.getVotes()) {
+            return 1;
+        }
+        if(getVotes() < o.getVotes()) {
+            return -1;
+        }
+        if(getDate().getTime() > o.getDate().getTime()) {
+            return 1;
+        }
+        if(getDate().getTime() < o.getDate().getTime()) {
+            return -1;
+        }
+        return getCommentText().compareTo(o.getCommentText());
     }
 }

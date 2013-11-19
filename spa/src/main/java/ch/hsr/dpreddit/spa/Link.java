@@ -2,7 +2,7 @@ package ch.hsr.dpreddit.spa;
 
 import java.util.*;
 
-public class Link extends Rateable{
+public class Link extends Rateable implements  Comparable<Link>{
     private static long IDINCREMENTER = 1;
     private long id;
     private String title;
@@ -60,6 +60,18 @@ public class Link extends Rateable{
 
     public Set<Comment> getComments() {
         return comments;
+    }
+
+    public Collection<Comment> getSortedComments() {
+        List<Comment> list = new LinkedList<>(comments);
+        Collections.sort(list, new Comparator<Comment>() {
+            @Override
+            public int compare(Comment o1, Comment o2) {
+                return o2.compareTo(o1);
+            }
+        });
+
+        return list;
     }
 
     public Map<String, Integer> getDateComponents() {
@@ -124,5 +136,22 @@ public class Link extends Rateable{
         }
 
         return "now";
+    }
+
+    @Override
+    public int compareTo(Link o) {
+        if(getVotes() > o.getVotes()) {
+            return 1;
+        }
+        if(getVotes() < o.getVotes()) {
+            return -1;
+        }
+        if(getDate().getTime() > o.getDate().getTime()) {
+            return 1;
+        }
+        if(getDate().getTime() < o.getDate().getTime()) {
+            return -1;
+        }
+        return getTitle().compareTo(o.getTitle());
     }
 }

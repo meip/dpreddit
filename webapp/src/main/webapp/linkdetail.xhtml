@@ -21,7 +21,7 @@
                     <div class="col-sm-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <h:panelGroup rendered="#{userSessionBean.loggedIn}">
+                                <h:panelGroup>
                                     <h:messages/>
                                     <h:panelGroup rendered="#{not empty linkDetailBean.link}">
                                         <div class="clearfix"></div><br />
@@ -32,44 +32,17 @@
 
                                             <h:panelGroup id="commentlist">
                                                 <ul class="media-list">
-                                                    <ui:repeat var="comment" value="#{linkDetailBean.link.comments}">
-                                                        <li class="media list-group-item" style="margin-top: 20px;">
-                                                            <div class="pull-left">
-                                                                <h:form>
-                                                                    <h:commandLink action="#{comment.vote(userSessionBean.user)}" value="">
-                                                                        <span class="glyphicon glyphicon-chevron-up"></span>
-
-                                                                        <div class="clearfix"></div>
-                                                                        <f:ajax render="commentlist"></f:ajax>
-                                                                    </h:commandLink>
-                                                                </h:form>
-                                                                <span>#{comment.votes}</span>
-
-                                                                <div class="clearfix"></div>
-                                                                <h:form>
-                                                                    <h:commandLink action="#{comment.devote(userSessionBean.user)}" value="">
-                                                                        <span class="glyphicon glyphicon-chevron-down"></span>
-                                                                        <f:ajax render="commentlist"></f:ajax>
-                                                                    </h:commandLink>
-                                                                </h:form>
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <span>#{comment.commentText}</span>
-                                                                <div class="clearfix"></div>
-                                                                <span><h:outputText>#{comment.ago} ago by #{comment.author.username}</h:outputText></span>
-                                                            </div>
-                                                        </li>
-                                                    </ui:repeat>
 
                                                     <li style="margin-top: 20px;">
-                                                        <div class="panel panel-default">
-                                                            <div class="panel-body">
-                                                                <div class="panel-heading">
-                                                                    <h4 class="">Add new comment</h4>
-                                                                </div>
-                                                                <h:messages errorClass="errorMessage" infoClass="infoMessage"
-                                                                            warnClass="warnMessage"></h:messages>
-                                                                <h:form styleClass="form-horizontal" acceptcharset="UTF-8">
+                                                        <h:panelGroup rendered="#{userSessionBean.loggedIn}">
+                                                            <div  class="panel panel-default">
+                                                                <div class="panel-body">
+                                                                    <div class="panel-heading">
+                                                                        <h4 class="">Add new comment</h4>
+                                                                    </div>
+                                                                    <h:messages errorClass="errorMessage" infoClass="infoMessage"
+                                                                                warnClass="warnMessage"></h:messages>
+                                                                        <h:form styleClass="form-horizontal" acceptcharset="UTF-8">
                                                                     <div class="form-group">
                                                                         <label for="commentText" class="col-xs-1 control-label"><span class="glyphicon glyphicon-comment"></span></label>
 
@@ -93,9 +66,41 @@
                                                                         </div>
                                                                     </div>
                                                                 </h:form>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        </h:panelGroup>
                                                     </li>
+
+                                                    <ui:repeat var="comment" value="#{linkDetailBean.link.sortedComments}">
+                                                        <li class="media list-group-item #{comment.author == userSessionBean.user ? 'owner' : ''}" style="margin-top: 20px;">
+                                                            <div class="pull-left">
+                                                                <h:form>
+                                                                    <h:commandLink action="#{comment.vote(userSessionBean.user)}" value="" disabled="#{!userSessionBean.loggedIn}" >
+                                                                        <span class="glyphicon glyphicon-chevron-up"></span>
+
+                                                                        <div class="clearfix"></div>
+                                                                        <f:ajax render="commentlist"></f:ajax>
+                                                                    </h:commandLink>
+                                                                </h:form>
+                                                                <span>#{comment.votes}</span>
+
+                                                                <div class="clearfix"></div>
+                                                                <h:form>
+                                                                    <h:commandLink action="#{comment.devote(userSessionBean.user)}" value="" disabled="#{!userSessionBean.loggedIn}" >
+                                                                        <span class="glyphicon glyphicon-chevron-down"></span>
+                                                                        <f:ajax render="commentlist"></f:ajax>
+                                                                    </h:commandLink>
+                                                                </h:form>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <span>#{comment.commentText}</span>
+                                                                <div class="clearfix"></div>
+                                                                <span><h:outputText>#{comment.ago} ago by #{comment.author.username}</h:outputText></span>
+                                                            </div>
+                                                        </li>
+                                                    </ui:repeat>
+
+
                                                 </ul>
                                             </h:panelGroup>
 

@@ -3,6 +3,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
         >
 <h:body>
 
@@ -25,10 +26,10 @@
             <h:panelGroup id="dpredditposts">
                 <ul class="media-list list-group" id="myposts">
                     <ui:repeat var="link" value="#{linkbean.posts}">
-                        <li class="media list-group-item">
+                        <li class="media list-group-item #{link.postAuthor == userSessionBean.user ? 'owner' : ''}">
                             <div class="pull-left">
                                 <h:form>
-                                    <h:commandLink action="#{link.vote(userSessionBean.user)}" value="">
+                                    <h:commandLink action="#{link.vote(userSessionBean.user)}" disabled="#{!userSessionBean.loggedIn}" value="">
                                         <span class="glyphicon glyphicon-chevron-up"></span>
 
                                         <div class="clearfix"></div>
@@ -39,7 +40,7 @@
 
                                 <div class="clearfix"></div>
                                 <h:form>
-                                    <h:commandLink action="#{link.devote(userSessionBean.user)}" value="">
+                                    <h:commandLink action="#{link.devote(userSessionBean.user)}" value=""  disabled="#{!userSessionBean.loggedIn}" >
                                         <span class="glyphicon glyphicon-chevron-down"></span>
                                         <f:ajax render="dpredditposts"></f:ajax>
                                     </h:commandLink>
@@ -51,7 +52,7 @@
                                 <div>
                                     <h:link outcome="linkdetail.xhtml">
                                         <f:param name="id" value="#{link.id}" />
-                                        <span class="glyphicon glyphicon-comment"></span> Comments
+                                        <span class="glyphicon glyphicon-comment"></span> Comments (#{fn:length(link.comments)})
                                     </h:link>
                                 </div>
                             </div>
