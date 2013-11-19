@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<f:metadata>
+    <f:viewParam name="id" value="#{linkDetailBean.post}"
+                 converter="#{converterProvider.linkIdConverter}"
+                 converterMessage="Unknown link, please use a link from the index."
+                 required="true"
+                 requiredMessage="Bad request, please use a link from the index."/>
+</f:metadata>
+<h:body>
+
+    <ui:composition template="/template/dpreddit/dpredditLayout.xhtml">
+
+        <ui:define name="content">
+            <div class="page-header" id="banner">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h:panelGroup rendered="#{userSessionBean.loggedIn}">
+                                    <h:messages/>
+                                    <h:panelGroup rendered="#{not empty linkDetailBean.post}">
+                                        <div class="clearfix"></div><br />
+                                        <div class="media-body">
+                                            <a href="#{linkDetailBean.post.linkURL}"><h4
+                                                    class="media-heading">#{linkDetailBean.post.title}</h4></a>
+                                            <span jsfc="h:outputText">#{linkDetailBean.post.ago} ago by #{linkDetailBean.post.postAuthor.username}</span>
+
+                                            <h:panelGroup id="commentlist">
+                                                <ul class="media-list">
+                                                    <ui:repeat var="comment" value="#{linkDetailBean.post.comments}">
+                                                        <li class="media list-group-item" style="margin-top: 20px;">
+                                                            <div class="pull-left">
+                                                                <h:form>
+                                                                    <h:commandLink action="#{comment.vote(userSessionBean.user)}" value="">
+                                                                        <span class="glyphicon glyphicon-chevron-up"></span>
+
+                                                                        <div class="clearfix"></div>
+                                                                        <f:ajax render="commentlist"></f:ajax>
+                                                                    </h:commandLink>
+                                                                </h:form>
+                                                                <span>#{comment.votes}</span>
+
+                                                                <div class="clearfix"></div>
+                                                                <h:form>
+                                                                    <h:commandLink action="#{comment.devote(userSessionBean.user)}" value="">
+                                                                        <span class="glyphicon glyphicon-chevron-down"></span>
+                                                                        <f:ajax render="commentlist"></f:ajax>
+                                                                    </h:commandLink>
+                                                                </h:form>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <span>#{comment.commentText}</span>
+                                                                <div class="clearfix"></div>
+                                                                <span><h:outputText>#{comment.ago} ago by #{comment.author.username}</h:outputText></span>
+                                                            </div>
+                                                        </li>
+                                                    </ui:repeat>
+
+                                                    <li style="margin-top: 20px;">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-body">
+                                                                <div class="panel-heading">
+                                                                    <h4 class="">Add new comment</h4>
+                                                                </div>
+                                                                <h:messages errorClass="errorMessage" warnClass="warnMessage" />
+                                                                <h:form styleClass="form-horizontal" acceptcharset="UTF-8">
+                                                                    <div class="form-group">
+                                                                        <label for="commentText" class="col-xs-1 control-label"><span class="glyphicon glyphicon-comment"></span></label>
+
+                                                                        <div class="col-xs-11">
+                                                                            <h:inputTextarea type="text" styleClass="form-control" id="commentText"
+                                                                                             value="#{linkDetailBean.newCommentText}"
+                                                                                             required="true" requiredMessage="Please Enter A Comment!"
+                                                                                             p:placeholder="An awesome link comment"></h:inputTextarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-xs-offset-1 col-xs-11">
+                                                                            <h:commandButton type="reset" value="Reset"
+                                                                                             styleClass="btn btn-warning"></h:commandButton>
+                                                                            <h:commandButton type="submit" value="Add Comment!"
+                                                                                             action="#{linkDetailBean.submitComment}"
+                                                                                             styleClass="btn btn-primary col-xs-offset-9">
+
+                                                                                <f:ajax execute="@form" render="commentlist"></f:ajax>
+                                                                            </h:commandButton>
+                                                                        </div>
+                                                                    </div>
+                                                                </h:form>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </h:panelGroup>
+
+                                        </div>
+
+                                    </h:panelGroup>
+                                </h:panelGroup>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+
+</html>

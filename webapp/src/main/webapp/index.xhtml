@@ -48,6 +48,12 @@
                             <div class="media-body">
                                 <a href="#{post.linkURL}"><h4 class="media-heading">#{post.title}</h4></a>
                                 <span jsfc="h:outputText">#{post.ago} ago by #{post.postAuthor.username}</span>
+                                <div>
+                                    <h:link outcome="linkdetail.xhtml">
+                                        <f:param name="id" value="#{post.id}" />
+                                        <span class="glyphicon glyphicon-comment"></span> Comments
+                                    </h:link>
+                                </div>
                             </div>
                         </li>
                     </ui:repeat>
