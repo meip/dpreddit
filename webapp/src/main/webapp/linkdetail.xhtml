@@ -5,7 +5,7 @@
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://java.sun.com/jsf/core">
 <f:metadata>
-    <f:viewParam name="id" value="#{linkDetailBean.post}"
+    <f:viewParam name="id" value="#{linkDetailBean.link}"
                  converter="#{converterProvider.linkIdConverter}"
                  converterMessage="Unknown link, please use a link from the index."
                  required="true"
@@ -23,16 +23,16 @@
                             <div class="panel-body">
                                 <h:panelGroup rendered="#{userSessionBean.loggedIn}">
                                     <h:messages/>
-                                    <h:panelGroup rendered="#{not empty linkDetailBean.post}">
+                                    <h:panelGroup rendered="#{not empty linkDetailBean.link}">
                                         <div class="clearfix"></div><br />
                                         <div class="media-body">
-                                            <a href="#{linkDetailBean.post.linkURL}"><h4
-                                                    class="media-heading">#{linkDetailBean.post.title}</h4></a>
-                                            <span jsfc="h:outputText">#{linkDetailBean.post.ago} ago by #{linkDetailBean.post.postAuthor.username}</span>
+                                            <a href="#{linkDetailBean.link.linkURL}"><h4
+                                                    class="media-heading">#{linkDetailBean.link.title}</h4></a>
+                                            <span jsfc="h:outputText">#{linkDetailBean.link.ago} ago by #{linkDetailBean.link.postAuthor.username}</span>
 
                                             <h:panelGroup id="commentlist">
                                                 <ul class="media-list">
-                                                    <ui:repeat var="comment" value="#{linkDetailBean.post.comments}">
+                                                    <ui:repeat var="comment" value="#{linkDetailBean.link.comments}">
                                                         <li class="media list-group-item" style="margin-top: 20px;">
                                                             <div class="pull-left">
                                                                 <h:form>
@@ -67,7 +67,8 @@
                                                                 <div class="panel-heading">
                                                                     <h4 class="">Add new comment</h4>
                                                                 </div>
-                                                                <h:messages errorClass="errorMessage" warnClass="warnMessage" />
+                                                                <h:messages errorClass="errorMessage" infoClass="infoMessage"
+                                                                            warnClass="warnMessage"></h:messages>
                                                                 <h:form styleClass="form-horizontal" acceptcharset="UTF-8">
                                                                     <div class="form-group">
                                                                         <label for="commentText" class="col-xs-1 control-label"><span class="glyphicon glyphicon-comment"></span></label>

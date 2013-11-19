@@ -1,7 +1,7 @@
 package ch.hsr.dpreddit.webapp;
 
 import ch.hsr.dpreddit.spa.Comment;
-import ch.hsr.dpreddit.spa.Post;
+import ch.hsr.dpreddit.spa.Link;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -11,15 +11,15 @@ import java.io.Serializable;
 @ManagedBean
 @ViewScoped
 public class LinkDetailBean implements Serializable {
-    private Post post;
+    private Link link;
     private String newCommentText;
 
-    public Post getPost() {
-        return post;
+    public Link getLink() {
+        return link;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setLink(Link link) {
+        this.link = link;
     }
 
     public String getNewCommentText() {
@@ -32,8 +32,8 @@ public class LinkDetailBean implements Serializable {
 
     public void submitComment() {
         UserSessionBean userSessionBeanBean = (UserSessionBean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userSessionBean");
-        Comment comment = new Comment(newCommentText, userSessionBeanBean.getUser(), post);
-        post.addComment(comment);
+        Comment comment = new Comment(newCommentText, userSessionBeanBean.getUser(), link);
+        link.addComment(comment);
         this.newCommentText = "";
     }
 }

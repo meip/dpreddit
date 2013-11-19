@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public final class DPRedditDB {
-    private Set<Post> postSet = new HashSet<>();
+    private Set<Link> linkSet = new HashSet<>();
     private Set<User> userSet = new HashSet<>();
 
     private static DPRedditDB instance;
@@ -14,11 +14,11 @@ public final class DPRedditDB {
         User user = new User("test", "test");
         addUser(user);
 
-        Post post = new Post("Please do not visit this site during lectures!", "http://9gag.com", user);
-        addPost(post);
+        Link link = new Link("Please do not visit this site during lectures!", "http://9gag.com", user);
+        addPost(link);
 
-        Comment comment = new Comment("What an awesome comment for that link", user, post);
-        post.addComment(comment);
+        Comment comment = new Comment("What an awesome comment for that link", user, link);
+        link.addComment(comment);
     }
 
     public synchronized static DPRedditDB getInstance() {
@@ -28,21 +28,21 @@ public final class DPRedditDB {
         return instance;
     }
 
-    public boolean addPost(Post post) {
-        return this.postSet.add(post);
+    public boolean addPost(Link link) {
+        return this.linkSet.add(link);
     }
 
     public boolean addUser(User user) {
         return this.userSet.add(user);
     }
 
-    public Set<Post> getPostSet() {
-        return postSet;
+    public Set<Link> getLinkSet() {
+        return linkSet;
     }
 
-    public Post getPostById(long id) {
-        for(Post post: DPRedditDB.getInstance().getPostSet()) {
-            if(post.getId() == id) return post;
+    public Link getPostById(long id) {
+        for(Link link : DPRedditDB.getInstance().getLinkSet()) {
+            if(link.getId() == id) return link;
         }
         return null;
     }

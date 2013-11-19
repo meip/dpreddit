@@ -24,33 +24,33 @@
 
             <h:panelGroup id="dpredditposts">
                 <ul class="media-list list-group" id="myposts">
-                    <ui:repeat var="post" value="#{postbean.posts}">
+                    <ui:repeat var="link" value="#{linkbean.posts}">
                         <li class="media list-group-item">
                             <div class="pull-left">
                                 <h:form>
-                                    <h:commandLink action="#{post.vote(userSessionBean.user)}" value="">
+                                    <h:commandLink action="#{link.vote(userSessionBean.user)}" value="">
                                         <span class="glyphicon glyphicon-chevron-up"></span>
 
                                         <div class="clearfix"></div>
                                         <f:ajax render="dpredditposts"></f:ajax>
                                     </h:commandLink>
                                 </h:form>
-                                <span>#{post.votes}</span>
+                                <span>#{link.votes}</span>
 
                                 <div class="clearfix"></div>
                                 <h:form>
-                                    <h:commandLink action="#{post.devote(userSessionBean.user)}" value="">
+                                    <h:commandLink action="#{link.devote(userSessionBean.user)}" value="">
                                         <span class="glyphicon glyphicon-chevron-down"></span>
                                         <f:ajax render="dpredditposts"></f:ajax>
                                     </h:commandLink>
                                 </h:form>
                             </div>
                             <div class="media-body">
-                                <a href="#{post.linkURL}"><h4 class="media-heading">#{post.title}</h4></a>
-                                <span jsfc="h:outputText">#{post.ago} ago by #{post.postAuthor.username}</span>
+                                <a href="#{link.linkURL}"><h4 class="media-heading">#{link.title}</h4></a>
+                                <span jsfc="h:outputText">#{link.ago} ago by #{link.postAuthor.username}</span>
                                 <div>
                                     <h:link outcome="linkdetail.xhtml">
-                                        <f:param name="id" value="#{post.id}" />
+                                        <f:param name="id" value="#{link.id}" />
                                         <span class="glyphicon glyphicon-comment"></span> Comments
                                     </h:link>
                                 </div>

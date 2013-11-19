@@ -1,7 +1,7 @@
 package ch.hsr.dpreddit.webapp.converter;
 
 import ch.hsr.dpreddit.spa.DPRedditDB;
-import ch.hsr.dpreddit.spa.Post;
+import ch.hsr.dpreddit.spa.Link;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -20,7 +20,7 @@ public class LinkIdConverter implements Converter {
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) throws ConverterException {
         String string = null;
-        if (value instanceof Post) string = Long.valueOf(((Post) value).getId()).toString();
+        if (value instanceof Link) string = Long.valueOf(((Link) value).getId()).toString();
         return string;
     }
 }

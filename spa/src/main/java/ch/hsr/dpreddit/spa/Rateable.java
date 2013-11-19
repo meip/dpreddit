@@ -13,19 +13,17 @@ public class Rateable {
         return positiveVotes.size() - negativeVotes.size();
     }
 
-    public int vote(User user) {
+    public void vote(User user) {
         if (negativeVotes.contains(user)) {
             negativeVotes.remove(user);
         }
         positiveVotes.add(user);
-        return getVotes();
     }
 
-    public int devote(User user) {
+    public void devote(User user) {
         if (positiveVotes.contains(user)) {
             positiveVotes.remove(user);
         }
         negativeVotes.add(user);
-        return getVotes();
     }
 }

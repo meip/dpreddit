@@ -2,7 +2,7 @@ package ch.hsr.dpreddit.spa;
 
 import java.util.*;
 
-public class Post extends Rateable{
+public class Link extends Rateable{
     private static long IDINCREMENTER = 1;
     private long id;
     private String title;
@@ -11,7 +11,7 @@ public class Post extends Rateable{
     private Date date;
     private Set<Comment> comments = new HashSet<>();
 
-    public Post(String title, String linkURL, User user) {
+    public Link(String title, String linkURL, User user) {
         this.id = IDINCREMENTER++;
         this.title = title;
         this.linkURL = linkURL;

@@ -8,15 +8,15 @@ public class Comment extends Rateable {
     private static long IDINCREMENTER = 1;
     private long id;
     private User author;
-    private Post post;
+    private Link link;
     private String commentText;
     private Date date;
 
-    public Comment(String commentText, User author, Post post) {
+    public Comment(String commentText, User author, Link link) {
         this.id = IDINCREMENTER++;
         this.commentText = commentText;
         this.author = author;
-        this.post = post;
+        this.link = link;
         this.date = new Date();
     }
 
