@@ -23,9 +23,9 @@
                                         <h:form styleClass="form-horizontal" acceptcharset="UTF-8">
 
                                     <div class="form-group">
-                                        <label for="linkTitle" class="col-lg-2 control-label">Title: </label>
+                                        <label for="linkTitle" class="col-sm-2 control-label">Title: </label>
 
-                                        <div class="col-lg-6">
+                                        <div class="col-sm-6">
                                             <h:inputText type="text" styleClass="form-control" id="linkTitle"
                                                          value="#{newLinkBean.linkTitle}"
                                                          required="true" requiredMessage="Please Enter A Title!"
@@ -33,9 +33,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="submitLink" class="col-lg-2 control-label">Link: </label>
+                                        <label for="submitLink" class="col-sm-2 control-label">Link: </label>
 
-                                        <div class="col-lg-6">
+                                        <div class="col-sm-6">
                                             <h:inputText type="text" styleClass="form-control" id="submitLink"
                                                          value="#{newLinkBean.linkUrl}"
                                                          required="true" requiredMessage="Please Enter The Link!"
@@ -45,12 +45,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-lg-offset-2 col-lg-10">
+                                        <div class="col-sm-offset-2 col-sm-10">
                                             <h:commandButton type="reset" value="Reset"
                                                              styleClass="btn btn-warning"></h:commandButton>
                                             <h:commandButton type="submit" value="Submit!"
                                                              action="#{newLinkBean.submitLink}"
-                                                             styleClass="btn btn-primary col-lg-offset-5"></h:commandButton>
+                                                             styleClass="btn btn-primary col-sm-offset-5"></h:commandButton>
                                         </div>
                                     </div>
                                 </h:form>
