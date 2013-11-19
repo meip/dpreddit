@@ -17,6 +17,8 @@ public final class DPRedditDB {
         Post post = new Post("Please do not visit this site during lectures!", "http://9gag.com", user);
         addPost(post);
 
+        Comment comment = new Comment("What an awesome comment for that link", user, post);
+        post.addComment(comment);
     }
 
     public synchronized static DPRedditDB getInstance() {
@@ -36,6 +38,13 @@ public final class DPRedditDB {
 
     public Set<Post> getPostSet() {
         return postSet;
+    }
+
+    public Post getPostById(long id) {
+        for(Post post: DPRedditDB.getInstance().getPostSet()) {
+            if(post.getId() == id) return post;
+        }
+        return null;
     }
 
     public Set<User> getUserSet() {
