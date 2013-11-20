@@ -28,7 +28,12 @@
                                         <div class="media-body">
                                             <a href="#{linkDetailBean.link.linkURL}"><h4
                                                     class="media-heading">#{linkDetailBean.link.title}</h4></a>
-                                            <span jsfc="h:outputText">#{linkDetailBean.link.ago} ago by #{linkDetailBean.link.postAuthor.username}</span>
+                                            <span>
+                                                <h:outputText value="#{msg['dpreddit.ago1']} "></h:outputText>
+                                                <h:outputText value="#{linkDetailBean.link.ago} "></h:outputText>
+                                                <h:outputText value="#{msg['dpreddit.ago2']}"></h:outputText>
+                                                <h:outputText value=" #{linkDetailBean.link.postAuthor.username}"></h:outputText>
+                                            </span>
 
                                             <h:panelGroup id="commentlist">
                                                 <ul class="media-list">
@@ -38,7 +43,7 @@
                                                             <div  class="panel panel-default">
                                                                 <div class="panel-body">
                                                                     <div class="panel-heading">
-                                                                        <h4 class="">Add new comment</h4>
+                                                                        <h4 class=""><h:outputText value="#{msg['dpreddit.addnewcomment']}"></h:outputText></h4>
                                                                     </div>
                                                                     <h:messages errorClass="errorMessage" infoClass="infoMessage"
                                                                                 warnClass="warnMessage"></h:messages>
@@ -49,7 +54,7 @@
                                                                         <div class="col-xs-11">
                                                                             <h:inputTextarea type="text" styleClass="form-control" id="commentText"
                                                                                              value="#{linkDetailBean.newCommentText}"
-                                                                                             required="true" requiredMessage="Please Enter A Comment!"
+                                                                                             required="true" requiredMessage="#{msg['dpreddit.validation.comment']}"
                                                                                              p:placeholder="An awesome link comment"></h:inputTextarea>
                                                                         </div>
                                                                     </div>
@@ -57,7 +62,7 @@
                                                                         <div class="col-xs-offset-1 col-xs-11">
                                                                             <h:commandButton type="reset" value="Reset"
                                                                                              styleClass="btn btn-warning"></h:commandButton>
-                                                                            <h:commandButton type="submit" value="Add Comment!"
+                                                                            <h:commandButton type="submit" value="#{msg['dpreddit.addcommentaction']}"
                                                                                              action="#{linkDetailBean.submitComment}"
                                                                                              styleClass="btn btn-primary col-xs-offset-9">
 
@@ -95,7 +100,12 @@
                                                             <div class="media-body">
                                                                 <span>#{comment.commentText}</span>
                                                                 <div class="clearfix"></div>
-                                                                <span><h:outputText>#{comment.ago} ago by #{comment.author.username}</h:outputText></span>
+                                                                <span>
+                                                                    <h:outputText value="#{msg['dpreddit.ago1']} "></h:outputText>
+                                                                    <h:outputText value="#{comment.ago} "></h:outputText>
+                                                                    <h:outputText value="#{msg['dpreddit.ago2']}"></h:outputText>
+                                                                    <h:outputText value=" #{comment.author.username}"></h:outputText>
+                                                                </span>
                                                             </div>
                                                         </li>
                                                     </ui:repeat>

@@ -37,16 +37,15 @@ public class UserSessionBean extends AbstractBean implements Serializable {
     }
 
     public String login() {
-        FacesContext fc = FacesContext.getCurrentInstance();
         for (User user : DPRedditDB.getInstance().getUserSet()) {
             if (user.getUsername().equals(username) && password.equals(user.getPassword())) {
                 this.user = user;
                 System.err.println("Login success: " + user);
-                addMessage("User Login Successful!!!", FacesMessage.SEVERITY_INFO);
+                addMessage("dpreddit.loginsuccess", FacesMessage.SEVERITY_INFO);
                 return "index";
             }
         }
-        addMessage("User Login failed!!!",FacesMessage.SEVERITY_ERROR);
+        addMessage("dpreddit.loginfailed", FacesMessage.SEVERITY_ERROR);
         return "loginfailure";
     }
 

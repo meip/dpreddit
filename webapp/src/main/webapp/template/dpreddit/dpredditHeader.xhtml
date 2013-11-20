@@ -9,7 +9,7 @@
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="../" class="navbar-brand">DP Reddit</a>
+                    <a href="/" class="navbar-brand"><h:outputText value="#{msg['dpreddit.name']}"></h:outputText></a>
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -20,48 +20,56 @@
                     <ul class="nav navbar-nav">
                         <h:panelGroup rendered="#{userSessionBean.loggedIn}">
                             <li>
-                                <a href="/newlink.xhtml">Submit link</a>
+                                <a href="/newlink.xhtml"><h:outputText value="#{msg['dpreddit.newlink']}"></h:outputText></a>
                             </li>
                         </h:panelGroup>
                     </ul>
                     <h:panelGroup rendered="#{!userSessionBean.loggedIn}">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="/registration.xhtml">Sign Up</a>
+                                <a href="/registration.xhtml"><h:outputText value="#{msg['dpreddit.signup']}"></h:outputText></a>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In <strong
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <h:outputText value="#{msg['dpreddit.signin']}"></h:outputText><strong
                                         class="caret"></strong></a>
 
                                 <div class="dropdown-menu" style="width: 300px; padding: 10px">
 
                                     <h:form acceptcharset="UTF-8">
                                         <div class="form-group">
-                                            <label class="sr-only" for="signinusername">Username</label>
+                                            <label class="sr-only" for="signinusername">
+                                                <h:outputText value="#{msg['dpreddit.username']}"></h:outputText>
+                                            </label>
                                             <h:inputText type="text" styleClass="form-control" id="signinusername"
                                                          value="#{userSessionBean.username}"
                                                          required="true" requiredMessage="Please Enter Username!"
-                                                         p:placeholder="Username"></h:inputText>
+                                                         p:placeholder="#{msg['dpreddit.username']}"></h:inputText>
                                         </div>
                                         <div class="form-group">
-                                            <label class="sr-only" for="signinpassword">Password</label>
+                                            <label class="sr-only" for="signinpassword">
+                                                <h:outputText value="#{msg['dpreddit.password']}"></h:outputText>
+                                            </label>
                                             <h:inputSecret styleClass="form-control" id="signinpassword"
                                                            value="#{userSessionBean.password}"
                                                            required="true" requiredMessage="Please Enter Password!"
-                                                           p:placeholder="Password"></h:inputSecret>
+                                                           p:placeholder="#{msg['dpreddit.password']}"></h:inputSecret>
                                         </div>
                                         <div class="checkbox" style="float: left;">
                                             <label>
-                                                <input type="checkbox"/> Remember me
+                                                <input type="checkbox"/>
+                                                <h:outputText value="#{msg['dpreddit.rememberme']}"></h:outputText>
                                             </label>
                                         </div>
-                                        <h:commandButton type="submit" value="Sign in" action="#{userSessionBean.login}" styleClass="btn btn-primary pull-right"></h:commandButton>
+                                        <h:commandButton type="submit" value="#{msg['dpreddit.signin']}" action="#{userSessionBean.login}" styleClass="btn btn-primary pull-right"></h:commandButton>
                                     </h:form>
                                 </div>
                             </li>
                             <li class="divider-vertical"></li>
                             <li>
-                                <a href="#">Help</a>
+                                <a href="#">
+                                    <h:outputText value="#{msg['dpreddit.help']}"></h:outputText>
+                                </a>
                             </li>
                         </ul>
                     </h:panelGroup>
@@ -69,7 +77,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <h:form acceptcharset="UTF-8">
-                                <h:commandLink value="" action="#{userSessionBean.logout}"><h:outputFormat value="" styleClass="glyphicon glyphicon-off"></h:outputFormat><h:outputFormat value="Logout #{userSessionBean.user.username}"></h:outputFormat></h:commandLink>
+                                <h:commandLink value="" action="#{userSessionBean.logout}"><h:outputFormat value="" styleClass="glyphicon glyphicon-off"></h:outputFormat><h:outputFormat value="#{msg['dpreddit.logout']} #{userSessionBean.user.username}"></h:outputFormat></h:commandLink>
                                 </h:form>
                             </li>
                         </ul>

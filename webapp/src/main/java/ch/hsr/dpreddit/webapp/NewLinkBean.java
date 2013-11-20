@@ -32,9 +32,9 @@ public class NewLinkBean extends AbstractBean {
         UserSessionBean userSessionBeanBean = (UserSessionBean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userSessionBean");
         Link newLink = new Link(linkTitle, linkUrl, userSessionBeanBean.getUser());
         if (DPRedditDB.getInstance().addPost(newLink)) {
-            addMessage("Link successfully submitted", FacesMessage.SEVERITY_INFO);
+            addMessage("dpreddit.linksubmitsuccess", FacesMessage.SEVERITY_INFO);
         } else {
-            addMessage("Problem while submitting link", FacesMessage.SEVERITY_ERROR);
+            addMessage("dpreddit.linksubmitfailed", FacesMessage.SEVERITY_ERROR);
         }
         return "index";
     }

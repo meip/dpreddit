@@ -48,11 +48,16 @@
                             </div>
                             <div class="media-body">
                                 <a href="#{link.linkURL}"><h4 class="media-heading">#{link.title}</h4></a>
-                                <span jsfc="h:outputText">#{link.ago} ago by #{link.postAuthor.username}</span>
+                                <span>
+                                    <h:outputText value="#{msg['dpreddit.ago1']} "></h:outputText>
+                                    <h:outputText value="#{link.ago} "></h:outputText>
+                                    <h:outputText value="#{msg['dpreddit.ago2']}"></h:outputText>
+                                    <h:outputText value=" #{link.postAuthor.username}"></h:outputText>
+                                </span>
                                 <div>
                                     <h:link outcome="linkdetail.xhtml">
                                         <f:param name="id" value="#{link.id}" />
-                                        <span class="glyphicon glyphicon-comment"></span> Comments (#{fn:length(link.comments)})
+                                        <span class="glyphicon glyphicon-comment"></span> <h:outputText value="#{msg['dpreddit.comments']}"></h:outputText> (#{fn:length(link.comments)})
                                     </h:link>
                                 </div>
                             </div>

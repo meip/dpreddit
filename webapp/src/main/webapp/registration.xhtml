@@ -14,46 +14,51 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="panel-heading">
-                                    <h4 class="">Registration</h4>
+                                    <h4 class=""><h:outputText value="#{msg['dpreddit.register']}"></h:outputText></h4>
                                 </div>
                                 <h:form styleClass="form-horizontal" acceptcharset="UTF-8">
 
                                     <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"></h:messages>
                                     <div class="form-group">
-                                        <label for="username" class="col-sm-2 control-label">Username: </label>
+                                        <label for="username" class="col-sm-2 control-label">
+                                            <h:outputText value="#{msg['dpreddit.username']}"></h:outputText>
+                                        </label>
 
                                         <div class="col-sm-6">
                                             <h:inputText type="text" styleClass="form-control" id="username"
                                                          value="#{registrationBean.username}"
-                                                         required="true" requiredMessage="Please Enter Username!"
-                                                         placeholder=""></h:inputText>
+                                                         required="true" requiredMessage="#{msg['dpreddit.validation.enterusername']}"></h:inputText>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword1" class="col-sm-2 control-label">Password </label>
+                                        <label for="inputPassword1" class="col-sm-2 control-label">
+                                            <h:outputText value="#{msg['dpreddit.password']}"></h:outputText>
+                                        </label>
 
                                         <div class="col-sm-6">
                                             <h:inputSecret styleClass="form-control" id="inputPassword1"
                                                            value="#{registrationBean.password}"
-                                                           required="true" requiredMessage="Please Enter Password!"
+                                                           required="true" requiredMessage="#{msg['dpreddit.validation.enterpassword']}"
                                                            placeholder=""></h:inputSecret>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword2"
-                                               class="col-sm-2 control-label">Password repeat</label>
+                                               class="col-sm-2 control-label">
+                                            <h:outputText value="#{msg['dpreddit.passwordrepeat']}"></h:outputText>
+                                        </label>
 
                                         <div class="col-sm-6">
                                             <h:inputSecret styleClass="form-control" id="inputPassword2"
                                                            value="#{registrationBean.password}"
-                                                           required="true" requiredMessage="Please Confirm Password!"
+                                                           required="true" requiredMessage="#{msg['dpreddit.validation.confirmpassword']}"
                                                            placeholder=""></h:inputSecret>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <h:commandButton type="reset" value="Reset" styleClass="btn btn-warning"></h:commandButton>
-                                            <h:commandButton type="submit" value="Submit!" action="#{registrationBean.addUser}" styleClass="btn btn-primary col-sm-offset-5"></h:commandButton>
+                                            <h:commandButton type="submit" value="#{msg['dpreddit.submitaction']}" action="#{registrationBean.addUser}" styleClass="btn btn-primary col-sm-offset-5"></h:commandButton>
                                         </div>
                                     </div>
                                 </h:form>

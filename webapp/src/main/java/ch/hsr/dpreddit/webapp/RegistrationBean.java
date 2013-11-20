@@ -39,9 +39,9 @@ public class RegistrationBean extends AbstractBean {
 
     public String addUser() {
         if (DPRedditDB.getInstance().addUser(new User(username, password))) {
-            addMessage("User Registration Successful!!!",FacesMessage.SEVERITY_INFO);
+            addMessage("dpreddit.registrationsuccess",FacesMessage.SEVERITY_INFO);
         } else {
-            addMessage("User already exists!!!",FacesMessage.SEVERITY_ERROR);
+            addMessage("dpreddit.registrationfailed",FacesMessage.SEVERITY_ERROR);
         }
         return "index";
     }
