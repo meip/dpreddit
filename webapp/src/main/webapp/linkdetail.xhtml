@@ -55,7 +55,7 @@
                                                                             <h:inputTextarea type="text" styleClass="form-control" id="commentText"
                                                                                              value="#{linkDetailBean.newCommentText}"
                                                                                              required="true" requiredMessage="#{msg['dpreddit.validation.comment']}"
-                                                                                             p:placeholder="An awesome link comment"></h:inputTextarea>
+                                                                                             p:placeholder="#{msg['dpreddit.addcommentplaceholder']}"></h:inputTextarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
@@ -80,7 +80,7 @@
                                                         <li class="media list-group-item #{comment.author == userSessionBean.user ? 'owner' : ''}" style="margin-top: 20px;">
                                                             <div class="pull-left">
                                                                 <h:form>
-                                                                    <h:commandLink action="#{comment.vote(userSessionBean.user)}" value="" disabled="#{!userSessionBean.loggedIn}" >
+                                                                    <h:commandLink action="#{comment.vote(userSessionBean.user)}" value=""  rendered="#{userSessionBean.loggedIn}" >
                                                                         <span class="glyphicon glyphicon-chevron-up"></span>
 
                                                                         <div class="clearfix"></div>
@@ -91,7 +91,7 @@
 
                                                                 <div class="clearfix"></div>
                                                                 <h:form>
-                                                                    <h:commandLink action="#{comment.devote(userSessionBean.user)}" value="" disabled="#{!userSessionBean.loggedIn}" >
+                                                                    <h:commandLink action="#{comment.devote(userSessionBean.user)}" value="" rendered="#{userSessionBean.loggedIn}" >
                                                                         <span class="glyphicon glyphicon-chevron-down"></span>
                                                                         <f:ajax render="commentlist"></f:ajax>
                                                                     </h:commandLink>

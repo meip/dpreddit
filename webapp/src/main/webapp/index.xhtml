@@ -29,7 +29,7 @@
                         <li class="media list-group-item #{link.postAuthor == userSessionBean.user ? 'owner' : ''}">
                             <div class="pull-left">
                                 <h:form>
-                                    <h:commandLink action="#{link.vote(userSessionBean.user)}" disabled="#{!userSessionBean.loggedIn}" value="">
+                                    <h:commandLink action="#{link.vote(userSessionBean.user)}" rendered="#{userSessionBean.loggedIn}" value="">
                                         <span class="glyphicon glyphicon-chevron-up"></span>
 
                                         <div class="clearfix"></div>
@@ -40,7 +40,7 @@
 
                                 <div class="clearfix"></div>
                                 <h:form>
-                                    <h:commandLink action="#{link.devote(userSessionBean.user)}" value=""  disabled="#{!userSessionBean.loggedIn}" >
+                                    <h:commandLink action="#{link.devote(userSessionBean.user)}" value=""  rendered="#{userSessionBean.loggedIn}" >
                                         <span class="glyphicon glyphicon-chevron-down"></span>
                                         <f:ajax render="dpredditposts"></f:ajax>
                                     </h:commandLink>

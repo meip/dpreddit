@@ -3,6 +3,7 @@ package ch.hsr.dpreddit.spa;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 public class Comment extends Rateable implements Comparable<Comment> {
     private static long IDINCREMENTER = 1;
@@ -66,42 +67,44 @@ public class Comment extends Rateable implements Comparable<Comment> {
     public String getAgo() {
         Map<String, Integer> components = getDateComponents();
 
+        ResourceBundle bundle = ResourceBundle.getBundle("ch.hsr.dpreddit.messages");
+
         Integer value = components.get("years");
         if (value > 0) {
-            return value + " year" + (value > 1 ? "s" : "");
+            return value + " " + (value > 1 ? bundle.getString("dpreddit.year_plural") : bundle.getString("dpreddit.year"));
         }
 
         value = components.get("months");
         if (value > 0) {
-            return value + " month" + (value > 1 ? "s" : "");
+            return value + " " + (value > 1 ? bundle.getString("dpreddit.month_plural") : bundle.getString("dpreddit.month"));
         }
 
         value = components.get("weeks");
         if (value > 0) {
-            return value + " week" + (value > 1 ? "s" : "");
+            return value + " " + (value > 1 ? bundle.getString("dpreddit.week_plural") : bundle.getString("dpreddit.week"));
         }
 
         value = components.get("days");
         if (value > 0) {
-            return value + " day" + (value > 1 ? "s" : "");
+            return value + " " + (value > 1 ? bundle.getString("dpreddit.day_plural") : bundle.getString("dpreddit.day"));
         }
 
         value = components.get("hours");
         if (value > 0) {
-            return value + " hour" + (value > 1 ? "s" : "");
+            return value + " " + (value > 1 ? bundle.getString("dpreddit.hour_plural") : bundle.getString("dpreddit.hour"));
         }
 
         value = components.get("minutes");
         if (value > 0) {
-            return value + " minute" + (value > 1 ? "s" : "");
+            return value + " " + (value > 1 ? bundle.getString("dpreddit.minute_plural") : bundle.getString("dpreddit.minute"));
         }
 
         value = components.get("seconds");
         if (value > 0) {
-            return value + " second" + (value > 1 ? "s" : "");
+            return value + " " + (value > 1 ? bundle.getString("dpreddit.second_plural") : bundle.getString("dpreddit.second"));
         }
 
-        return "now";
+        return "0 " + bundle.getString("dpreddit.second_plural");
     }
 
     @Override

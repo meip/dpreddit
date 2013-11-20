@@ -16,10 +16,10 @@ public final class DPRedditDB {
         User user = new User("test", "test");
         addUser(user);
 
-        Link link = new Link("Please do not visit this site during lectures!", "http://9gag.com", user);
+        Link link = new Link("Geht bloss nicht auf diese Seite, wenn ihr in einer Vorlesung seid!", "http://9gag.com", user);
         addPost(link);
 
-        Comment comment = new Comment("What an awesome comment for that link", user, link);
+        Comment comment = new Comment("Was für ein geistreicher Kommentar für diesen Link.", user, link);
         link.addComment(comment);
     }
 
