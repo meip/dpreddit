@@ -14,7 +14,8 @@ object BuildSettings {
     version := buildVersion,
     shellPrompt := ShellPrompt.buildShellPrompt,
     exportJars := false,
-    autoScalaLibrary := false
+    autoScalaLibrary := false,
+    javacOptions ++= Seq("-encoding", "UTF-8")
   )
 }
 
